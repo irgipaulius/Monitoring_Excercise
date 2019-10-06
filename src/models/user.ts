@@ -1,16 +1,16 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   public id: number;
 
-  @Column()
-  public userName: string;
+  @Column({ type: "text" })
+  public name: string;
 
-  @Column()
+  @Column({ type: "text" })
   public email: string;
 
-  @Column()
+  @Column({ type: "text" })
   public accessToken: string;
 }

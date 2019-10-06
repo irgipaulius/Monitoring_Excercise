@@ -1,5 +1,7 @@
 import { Connection, createConnection } from "typeorm";
 import { User } from "../models/user";
+import { MonitoredEndpoints } from "../models/monitoredEndpoints";
+import { MonitoringResult } from "../models/monitoringResult";
 
 export interface DatabaseConfiguration {
   type: "postgres" | "mysql" | "mssql";
@@ -47,10 +49,7 @@ export class DatabaseProvider {
       extra: {
         ssl
       },
-      entities: [
-        // models go here
-        User
-      ],
+      entities: [User, MonitoredEndpoints, MonitoringResult],
       autoSchemaSync: true
     } as any);
 
