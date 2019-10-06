@@ -16,7 +16,8 @@ export class MonitoredEndpointsController implements Controller {
   private async list(req: Request, res: Response): Promise<void> {
     try {
       let user = await getAuthorizedUserId(req);
-      res.send(await monitoredEndpointsService.list(user));
+      const endpoints = await monitoredEndpointsService.list(user);
+      res.send(endpoints.length ? 200 : 404, endpoints);
     } catch (e) {
       res.send(500, e.message);
     }

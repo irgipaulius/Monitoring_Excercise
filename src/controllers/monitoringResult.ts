@@ -13,7 +13,8 @@ export class MonitoringResultController implements Controller {
   private async list(req: Request, res: Response): Promise<void> {
     try {
       let user = await getAuthorizedUserId(req);
-      res.send(await monitoringResultsService.list(user, req.params.id));
+      const results = await monitoringResultsService.list(user, req.params.id);
+      res.send(results.length ? 200 : 404, results);
     } catch (e) {
       res.send(500, e.message);
     }

@@ -17,7 +17,11 @@ export class MonitoredResultsService {
       endpointIds.push(endpointId);
     } else {
       const endpoints = await monitoredEndpointsService.list(userId);
-      endpointIds = endpoints.map(e => e.id);
+      if (endpoints.length) {
+        endpointIds = endpoints.map(e => e.id);
+      } else {
+        return [];
+      }
     }
 
     const connection = await DatabaseProvider.getConnection();
