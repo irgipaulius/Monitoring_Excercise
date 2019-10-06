@@ -1,6 +1,10 @@
 # Monitoring_Excercise
 Endpoint monitoring application
 
+# Application
+
+This is a  microservice, which allows you to monitor your desired endpoints and provide you the results. Multiple users can use the service at the same time.
+
 # Installation
 
 #### Setup mySQL database:
@@ -17,7 +21,7 @@ Endpoint monitoring application
 
 # Getting started
 
-Start the server with:
+### Start the server with:
 >`npm start`
 
 ### Perform requests:
@@ -32,9 +36,9 @@ Alternatively, a header `authorization` can be setup with the token as it's valu
 - >`GET http://localhost:8080/endpoints`
     - lists endpoints, belonging to the authorized user
 - >`GET http://localhost:8080/endpoints/{id}`
-    - returns endpoint with `{id}`, if it belongs to the authorized user
+    - returns endpoint with `{id}`, belonging to the authorized user
 - >`GET http://localhost:8080/results`
-    - lists 10 most recent monitoring results collected, which belonging to the authorized user
+    - lists 10 most recent monitoring results collected, belonging to the authorized user
 - >`GET http://localhost:8080/results/{id}`
     - returns list of 10 most recent monitoring results of endpoint with `{id}`, belonging to the authorized user
 - >`POST http://localhost:8080/endpoints`
@@ -45,6 +49,19 @@ Alternatively, a header `authorization` can be setup with the token as it's valu
         - `monitorInterval`: monitoring time interval in seconds
 - >`DELETE http://localhost:8080/endpoints/{:id}`
     - deletes endpoint with `{id}`, if it belongs to the authorized user.
+
+### Run tests
+
+>`npm run test`
+
+# Tech stack
+
+- Built in `Node.js` framework
+- Using `TypeScript`
+- `MySQL` is used as the database
+- REST framework - `Restify`
+- Tests are written using `Jest`
+- Possibility to run in `Docker`
 
 
 
