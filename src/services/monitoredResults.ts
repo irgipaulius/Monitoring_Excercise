@@ -39,6 +39,11 @@ export class MonitoredResultsService {
     newResult.statusCode = result.statusCode;
     newResult.payload = result.payload;
 
+    monitoredEndpointsService.updateCheckedValue(
+      newResult.endpointID,
+      newResult.checked
+    );
+
     const connection = await DatabaseProvider.getConnection();
     return await connection.getRepository(MonitoringResult).save(newResult);
   }

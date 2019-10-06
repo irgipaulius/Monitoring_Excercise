@@ -46,13 +46,29 @@ export class MonitoredEndpointsService {
   ): Promise<MonitoredEndpoints> {
     const entity = await this.getById(userId, endpoint.id);
     if (entity) {
-      entity.name = endpoint.name;
-      entity.url = endpoint.url;
-      entity.monitorInterval = endpoint.monitorInterval;
+      entity.name = endpoint.name || entity.name;
+      entity.url = endpoint.url || entity.url;
+      entity.monitorInterval =
+        endpoint.monitorInterval || entity.monitorInterval;
     }
 
     const connection = await DatabaseProvider.getConnection();
     return await connection.getRepository(MonitoredEndpoints).save(entity);
+  }
+
+  public async updateCheckedValue(endpointId: number, checked: Date) {
+    const connection = await DatabaseProvider.getConnection();
+
+    const entity = await connection
+      .getRepository(MonitoredEndpoints)
+      .findOne(endpointId);
+
+    if (entity) {
+      entity.checked = checked;
+      return await connection.getRepository(MonitoredEndpoints).save(entity);
+    } else {
+      throw new Error("ENDPOINT " + endpointId + " DOESNT EXIST");
+    }
   }
 
   public async delete(userId: number, endpointId: number): Promise<void> {
