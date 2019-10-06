@@ -1,7 +1,4 @@
-import {
-  MonitoredResultsService,
-  monitoringResultsService
-} from "../services/monitoredResults";
+import { monitoringResultsService } from "../services/monitoredResults";
 import { MonitoredEndpoints } from "../models/monitoredEndpoints";
 import request, { Response } from "request";
 import { MonitoringResult } from "../models/monitoringResult";

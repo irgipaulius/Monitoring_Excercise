@@ -25,6 +25,11 @@ export class MonitoredEndpointsService {
       .getMany();
   }
 
+  public async getAllEndpoints() {
+    const connection = await DatabaseProvider.getConnection();
+    return await connection.getRepository(MonitoredEndpoints).find();
+  }
+
   public async create(
     userId: number,
     endpoint: MonitoredEndpoints

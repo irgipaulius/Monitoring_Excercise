@@ -1,5 +1,6 @@
 import { DatabaseProvider } from "../database";
 import { MonitoredEndpoints } from "../models/monitoredEndpoints";
+import { monitoredEndpointsService } from "../services/monitoredEndpoints";
 import Monitor from "./monitor";
 
 const CHANGES_CHECK_INTERVAL = 10;
@@ -11,17 +12,13 @@ export default class MonitoringPanel {
   }
 
   startCheckingMonitoredEndpoints() {
-    this.checkMonitoredEndpoints();
     setInterval(() => {
       this.checkMonitoredEndpoints();
     }, CHANGES_CHECK_INTERVAL * 1000);
   }
 
   private async checkMonitoredEndpoints() {
-    const connection = await DatabaseProvider.getConnection();
-    const allEndpoints = await connection
-      .getRepository(MonitoredEndpoints)
-      .find();
+    const allEndpoints = await monitoredEndpointsService.getAllEndpoints();
     console.log(
       "checking for changes in the database: " +
         allEndpoints.length +
