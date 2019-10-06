@@ -25,7 +25,7 @@ beforeEach(() => {
 
 describe("monitor/", () => {
   describe("index.ts:", () => {
-    describe("MonitoringPanel:", () => {
+    describe("class MonitoringPanel:", () => {
       describe("constructor():", () => {
         it("should init monitors", () => {
           expect(monitoringPanel.monitors).toEqual([]);

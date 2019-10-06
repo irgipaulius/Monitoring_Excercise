@@ -32,12 +32,12 @@ export default class Monitor {
   private async requestUrl(url: string) {
     return new Promise<Response>((res, rej) => {
       request.get(url, undefined, (err, response, body) => {
-        res(response);
+        res(err || response);
       });
     });
   }
 
-  private async saveResult(response: Response) {
+  async saveResult(response: Response) {
     const monitoringResult = new MonitoringResult();
     monitoringResult.endpointID = this.endpoint.id;
     monitoringResult.statusCode = response.statusCode;
